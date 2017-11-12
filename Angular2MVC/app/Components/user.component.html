@@ -5,11 +5,13 @@
     <div class='panel-body'>
         <div class='table-responsive'>
             <div style="padding-bottom:10px"><button class="btn btn-primary" (click)="addUser()">Add</button></div>
+            <div style="padding-bottom:10px"><button class="btn btn-primary" (click)="purchaseItems()">Purchase</button></div>
             <div class="alert alert-info" role="alert" *ngIf="indLoading"><img src="../../images/loading.gif" width="32" height="32" /> Loading...</div>
             <div *ngIf='users && users.length==0' class="alert alert-info" role="alert">No record found!</div>
             <table class='table table-striped' *ngIf='users && users.length'>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Gender</th>
@@ -18,6 +20,9 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let user of users">
+                        <td>
+                            <input #checkbox (change)="checkboxChanged(checkbox.value)" value="{{user.Id}}" type="checkbox" />
+                        </td> 
                         <td>{{user.FirstName}}</td>
                         <td>{{user.LastName}}</td>
                         <td>{{user.Gender}}</td>
